@@ -1,12 +1,15 @@
 "use client";
 
-import { Button, Card, DatePicker, Modal, Row, Col, Statistic, Form, Input, message } from "antd";
+import React from 'react';
+import { Button, Typography, Row, Col, Card, DatePicker, Modal, Statistic, Form, Input, message } from 'antd';
 import { GlobalOutlined, WifiOutlined, EnvironmentOutlined, StarOutlined, PhoneOutlined, UserOutlined, ShoppingCartOutlined, DollarOutlined, MailOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { useLanguage } from "@/lib/language-context";
 import dayjs from "dayjs";
 import { DataTable } from '@/components/ui/data-table';
 import type { ColumnsType } from 'antd/es/table';
+
+const { Title, Paragraph } = Typography;
 
 interface DataType {
   key: string;
@@ -21,7 +24,7 @@ const columns: ColumnsType<DataType> = [
   { title: 'Ciudad', dataIndex: 'city' },
 ];
 
-export default function Home() {
+export default function HomePage() {
   const { translations, toggleLanguage, language } = useLanguage();
   const [date, setDate] = useState<dayjs.Dayjs | null>(dayjs());
   const [isCheckingAvailability, setIsCheckingAvailability] = useState(false);
@@ -50,7 +53,7 @@ export default function Home() {
   };
 
   return (
-    <main>
+    <div className="min-h-screen">
       {/* Language Toggle */}
       <div className="absolute top-4 right-4 z-10">
         <Button 
@@ -63,71 +66,49 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <div className="relative h-[90vh]">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')",
-          }}
-        >
-          <div className="absolute inset-0 bg-black/40" />
-        </div>
-        
-        <div className="relative h-full flex items-center justify-center text-center">
-          <div className="max-w-4xl px-4">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-              {translations.hero.title}
-            </h1>
-            <p className="text-xl text-white/90 mb-8">
-              {translations.hero.subtitle}
-            </p>
-            <Button type="primary" size="large" className="bg-white text-black hover:bg-white/90">
-              {translations.hero.bookNow}
-            </Button>
-          </div>
+      <div className="relative h-[600px] bg-cover bg-center" style={{
+        backgroundImage: 'url("https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'
+      }}>
+        <div className="absolute inset-0 bg-black bg-opacity-50" />
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-white px-4">
+          <Title level={1} className="text-white text-center mb-4">
+            {translations.hero.title}
+          </Title>
+          <Paragraph className="text-white text-center text-lg mb-8">
+            {translations.hero.subtitle}
+          </Paragraph>
+          <Button type="primary" size="large">
+            {translations.hero.bookNow}
+          </Button>
         </div>
       </div>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            {translations.features.title}
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card hoverable>
-              <div className="text-center">
-                <WifiOutlined className="text-4xl mb-4 text-blue-600" />
-                <h3 className="text-xl font-semibold mb-2">{translations.features.amenities.title}</h3>
-                <p className="text-gray-600">
-                  {translations.features.amenities.description}
-                </p>
-              </div>
+      <div className="py-16 px-4">
+        <Title level={2} className="text-center mb-12">
+          {translations.features.title}
+        </Title>
+        <Row gutter={[32, 32]} className="max-w-7xl mx-auto">
+          <Col xs={24} md={8}>
+            <Card className="h-full">
+              <Title level={3}>{translations.features.amenities.title}</Title>
+              <Paragraph>{translations.features.amenities.description}</Paragraph>
             </Card>
-
-            <Card hoverable>
-              <div className="text-center">
-                <EnvironmentOutlined className="text-4xl mb-4 text-blue-600" />
-                <h3 className="text-xl font-semibold mb-2">{translations.features.location.title}</h3>
-                <p className="text-gray-600">
-                  {translations.features.location.description}
-                </p>
-              </div>
+          </Col>
+          <Col xs={24} md={8}>
+            <Card className="h-full">
+              <Title level={3}>{translations.features.location.title}</Title>
+              <Paragraph>{translations.features.location.description}</Paragraph>
             </Card>
-
-            <Card hoverable>
-              <div className="text-center">
-                <StarOutlined className="text-4xl mb-4 text-blue-600" />
-                <h3 className="text-xl font-semibold mb-2">{translations.features.service.title}</h3>
-                <p className="text-gray-600">
-                  {translations.features.service.description}
-                </p>
-              </div>
+          </Col>
+          <Col xs={24} md={8}>
+            <Card className="h-full">
+              <Title level={3}>{translations.features.service.title}</Title>
+              <Paragraph>{translations.features.service.description}</Paragraph>
             </Card>
-          </div>
-        </div>
-      </section>
+          </Col>
+        </Row>
+      </div>
 
       {/* Stats Section */}
       <section className="py-20 bg-gray-100">
@@ -306,6 +287,6 @@ export default function Home() {
           </Form.Item>
         </Form>
       </Modal>
-    </main>
+    </div>
   );
 }
