@@ -66,12 +66,15 @@ export default function HomePage() {
       </div>
 
       {/* Hero Section */}
-      <div className="relative h-[600px] bg-cover bg-center" style={{
-        backgroundImage: 'url("https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'
-      }}>
+      <div 
+        className="relative h-[600px] bg-cover bg-center" 
+        style={{
+          backgroundImage: 'url("https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'
+        }}
+      >
         <div className="absolute inset-0 bg-black bg-opacity-50" />
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-white px-4">
-          <Title level={1} className="text-white text-center mb-4">
+          <Title className="text-white text-center mb-4" level={1}>
             {translations.hero.title}
           </Title>
           <Paragraph className="text-white text-center text-lg mb-8">
@@ -84,11 +87,11 @@ export default function HomePage() {
       </div>
 
       {/* Features Section */}
-      <div className="py-16 px-4">
-        <Title level={2} className="text-center mb-12">
+      <div className="py-16 px-4 max-w-7xl mx-auto">
+        <Title className="text-center mb-12" level={2}>
           {translations.features.title}
         </Title>
-        <Row gutter={[32, 32]} className="max-w-7xl mx-auto">
+        <Row gutter={[32, 32]}>
           <Col xs={24} md={8}>
             <Card className="h-full">
               <Title level={3}>{translations.features.amenities.title}</Title>
