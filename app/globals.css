@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Resetear algunos estilos que pueden causar conflictos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Asegurarse de que el html y body ocupen toda la altura */
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+#__next {
+  height: 100%;
+}
+
+/* Estilos específicos para Ant Design */
+.ant-btn-primary {
+  @apply shadow-sm;
+}
+
+/* Ajustes para el layout */
+.ant-layout {
+  @apply bg-gray-50;
+  min-height: 100vh;
+}
+
+.ant-layout-header {
+  @apply bg-white shadow-sm;
+}
+
+.ant-layout-sider {
+  @apply bg-white shadow-sm;
+}
+
+.ant-menu {
+  border-inline-end: none !important;
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
