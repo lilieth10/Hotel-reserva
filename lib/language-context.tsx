@@ -55,6 +55,8 @@ interface MenuTranslations {
   services: string;
   contact: string;
   about: string;
+  users: string;
+  settings: string;
 }
 
 interface Translations {
@@ -120,7 +122,9 @@ const translations: Record<Language, Translations> = {
       rooms: 'Habitaciones',
       services: 'Servicios',
       contact: 'Contacto',
-      about: 'Nosotros'
+      about: 'Nosotros',
+      users: 'Usuarios',
+      settings: 'Configuración'
     }
   },
   en: {
@@ -169,7 +173,9 @@ const translations: Record<Language, Translations> = {
       rooms: 'Rooms',
       services: 'Services',
       contact: 'Contact',
-      about: 'About Us'
+      about: 'About Us',
+      users: 'Users',
+      settings: 'Settings'
     }
   }
 };

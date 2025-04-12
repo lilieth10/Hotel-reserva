@@ -7,17 +7,20 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
     <ConfigProvider
       theme={{
-        algorithm: theme.defaultAlgorithm,
         token: {
-          colorPrimary: '#1677ff',
-          borderRadius: 6,
+          colorPrimary: '#9C8B7A',
+          borderRadius: 8,
+          colorBgContainer: '#ffffff',
+          fontFamily: 'Inter, sans-serif',
         },
         components: {
           Button: {
-            colorPrimary: '#1677ff',
+            controlHeight: 40,
+            paddingContentHorizontal: 24,
           },
           Card: {
-            borderRadius: 6,
+            boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+            borderRadiusLG: 12,
           },
         },
       }}
