@@ -28,7 +28,7 @@ Sitio web para el Hotel Boutique Mendoza, desarrollado con Next.js, TypeScript y
 
 1. Clona el repositorio:
 ```bash
-git clone [URL_DEL_REPOSITORIO]
+git clone https://github.com/lilieth10/Hotel-reserva
 ```
 
 2. Instala las dependencias:
