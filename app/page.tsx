@@ -6,23 +6,8 @@ import { GlobalOutlined, WifiOutlined, EnvironmentOutlined, StarOutlined, PhoneO
 import { useState } from "react";
 import { useLanguage } from "@/lib/language-context";
 import dayjs from "dayjs";
-import { DataTable } from '@/components/ui/data-table';
-import type { ColumnsType } from 'antd/es/table';
 
 const { Title, Paragraph } = Typography;
-
-interface DataType {
-  key: string;
-  name: string;
-  age: number;
-  city: string;
-}
-
-const columns: ColumnsType<DataType> = [
-  { title: 'Nombre', dataIndex: 'name' },
-  { title: 'Edad', dataIndex: 'age' },
-  { title: 'Ciudad', dataIndex: 'city' },
-];
 
 export default function HomePage() {
   const { translations, toggleLanguage, language } = useLanguage();
@@ -120,7 +105,7 @@ export default function HomePage() {
             <Col xs={24} md={8}>
               <Card>
                 <Statistic
-                  title="Usuarios"
+                  title="Huéspedes Satisfechos"
                   value={1128}
                   prefix={<UserOutlined />}
                 />
@@ -129,7 +114,7 @@ export default function HomePage() {
             <Col xs={24} md={8}>
               <Card>
                 <Statistic
-                  title="Ventas"
+                  title="Reservas Exitosas"
                   value={93}
                   prefix={<ShoppingCartOutlined />}
                 />
@@ -138,10 +123,9 @@ export default function HomePage() {
             <Col xs={24} md={8}>
               <Card>
                 <Statistic
-                  title="Ingresos"
-                  value={15600}
-                  prefix={<DollarOutlined />}
-                  precision={2}
+                  title="Experiencias"
+                  value={156}
+                  prefix={<StarOutlined />}
                 />
               </Card>
             </Col>
@@ -165,7 +149,7 @@ export default function HomePage() {
               <Button 
                 type="primary"
                 onClick={handleCheckAvailability}
-                className="w-[240px] bg-blue-600"
+                className="w-[240px]"
               >
                 {translations.booking.checkAvailability}
               </Button>
@@ -180,11 +164,11 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold mb-8">{translations.contact.title}</h2>
           <div className="flex items-center justify-center gap-2 text-lg mb-4">
             <PhoneOutlined />
-            <span>+1 (555) 123-4567</span>
+            <span>{translations.contact.phone}</span>
           </div>
           <div className="flex items-center justify-center gap-2 text-lg mb-4">
             <MailOutlined />
-            <span>contacto@miaplicacion.com</span>
+            <span>{translations.contact.email}</span>
           </div>
           <p className="mt-4 text-gray-600 mb-8">
             {translations.contact.address}
@@ -192,25 +176,9 @@ export default function HomePage() {
           <Button 
             type="primary" 
             onClick={() => setIsContactModalVisible(true)}
-            className="bg-blue-600"
           >
             Envíanos un mensaje
           </Button>
-        </div>
-      </section>
-
-      {/* Data Table Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center">Usuarios Registrados</h2>
-          <DataTable
-            columns={columns}
-            dataSource={[
-              { key: '1', name: 'Juan', age: 32, city: 'Madrid' },
-              { key: '2', name: 'María', age: 28, city: 'Barcelona' },
-              { key: '3', name: 'Pedro', age: 35, city: 'Valencia' },
-            ]}
-          />
         </div>
       </section>
 
@@ -218,6 +186,8 @@ export default function HomePage() {
       <footer className="bg-gray-900 text-white py-8">
         <div className="container mx-auto px-4 text-center">
           <p>{translations.footer.copyright}</p>
+          <p className="mt-2">{translations.footer.address}</p>
+          <p className="mt-2">{translations.footer.contact}</p>
         </div>
       </footer>
 
@@ -231,7 +201,7 @@ export default function HomePage() {
         <div className="text-center py-4">
           <h3 className="text-xl mb-4">
             {isAvailable === null ? (
-              "Checking availability..."
+              "Verificando disponibilidad..."
             ) : isAvailable ? (
               translations.booking.available
             ) : (
@@ -284,7 +254,7 @@ export default function HomePage() {
             <Input.TextArea rows={4} />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="w-full bg-blue-600">
+            <Button type="primary" htmlType="submit" block>
               Enviar
             </Button>
           </Form.Item>
