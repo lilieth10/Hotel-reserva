@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 
 const { Title, Paragraph } = Typography;
 
-export default function HomePage() {
+export default function Home() {
   const { translations, toggleLanguage, language } = useLanguage();
   const [date, setDate] = useState<dayjs.Dayjs | null>(dayjs());
   const [isCheckingAvailability, setIsCheckingAvailability] = useState(false);
@@ -18,11 +18,7 @@ export default function HomePage() {
   const [form] = Form.useForm();
 
   const handleCheckAvailability = () => {
-    setIsCheckingAvailability(true);
-    // Simulate availability check
-    setTimeout(() => {
-      setIsAvailable(Math.random() > 0.5);
-    }, 1000);
+    message.info('Verificando disponibilidad...');
   };
 
   const handleContactSubmit = async (values: any) => {
@@ -38,7 +34,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="space-y-12">
       {/* Language Toggle */}
       <div className="absolute top-4 right-4 z-10">
         <Button 
@@ -51,215 +47,92 @@ export default function HomePage() {
       </div>
 
       {/* Hero Section */}
-      <div 
-        className="relative h-[600px] bg-cover bg-center" 
+      <section 
+        className="relative h-[600px] bg-cover bg-center flex items-center justify-center"
         style={{
           backgroundImage: 'url("https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-50" />
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-white px-4">
-          <Title className="text-white text-center mb-4" level={1}>
-            {translations.hero.title}
-          </Title>
-          <Paragraph className="text-white text-center text-lg mb-8">
-            {translations.hero.subtitle}
-          </Paragraph>
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative z-10 text-center text-white space-y-4">
+          <h1 className="text-5xl font-bold">{translations.hero.title}</h1>
+          <p className="text-xl">{translations.hero.subtitle}</p>
           <Button type="primary" size="large">
             {translations.hero.bookNow}
           </Button>
         </div>
-      </div>
+      </section>
 
       {/* Features Section */}
-      <div className="py-16 px-4 max-w-7xl mx-auto">
-        <Title className="text-center mb-12" level={2}>
-          {translations.features.title}
-        </Title>
-        <Row gutter={[32, 32]}>
-          <Col xs={24} md={8}>
-            <Card className="h-full">
-              <Title level={3}>{translations.features.amenities.title}</Title>
-              <Paragraph>{translations.features.amenities.description}</Paragraph>
-            </Card>
-          </Col>
-          <Col xs={24} md={8}>
-            <Card className="h-full">
-              <Title level={3}>{translations.features.location.title}</Title>
-              <Paragraph>{translations.features.location.description}</Paragraph>
-            </Card>
-          </Col>
-          <Col xs={24} md={8}>
-            <Card className="h-full">
-              <Title level={3}>{translations.features.service.title}</Title>
-              <Paragraph>{translations.features.service.description}</Paragraph>
-            </Card>
-          </Col>
-        </Row>
-      </div>
+      <section>
+        <h2 className="text-2xl font-bold mb-8 text-center">{translations.features.title}</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <Card title={translations.features.amenities.title}>
+            <p>{translations.features.amenities.description}</p>
+          </Card>
+          <Card title={translations.features.location.title}>
+            <p>{translations.features.location.description}</p>
+          </Card>
+          <Card title={translations.features.service.title}>
+            <p>{translations.features.service.description}</p>
+          </Card>
+        </div>
+      </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <Row gutter={[16, 16]}>
-            <Col xs={24} md={8}>
-              <Card>
-                <Statistic
-                  title="Huéspedes Satisfechos"
-                  value={1128}
-                  prefix={<UserOutlined />}
-                />
-              </Card>
-            </Col>
-            <Col xs={24} md={8}>
-              <Card>
-                <Statistic
-                  title="Reservas Exitosas"
-                  value={93}
-                  prefix={<ShoppingCartOutlined />}
-                />
-              </Card>
-            </Col>
-            <Col xs={24} md={8}>
-              <Card>
-                <Statistic
-                  title="Experiencias"
-                  value={156}
-                  prefix={<StarOutlined />}
-                />
-              </Card>
-            </Col>
-          </Row>
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div>
+          <h3 className="text-lg text-gray-600">Huéspedes Satisfechos</h3>
+          <p className="text-3xl font-bold">1,128</p>
+        </div>
+        <div>
+          <h3 className="text-lg text-gray-600">Reservas Exitosas</h3>
+          <p className="text-3xl font-bold">93</p>
+        </div>
+        <div>
+          <h3 className="text-lg text-gray-600">Experiencias</h3>
+          <p className="text-3xl font-bold">156</p>
         </div>
       </section>
 
       {/* Booking Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-12">{translations.booking.title}</h2>
-            
-            <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <DatePicker
-                value={date}
-                onChange={(date) => setDate(date)}
-                className="w-[240px]"
-              />
-
-              <Button 
-                type="primary"
-                onClick={handleCheckAvailability}
-                className="w-[240px]"
-              >
-                {translations.booking.checkAvailability}
-              </Button>
+      <section>
+        <h2 className="text-2xl font-bold mb-8 text-center">{translations.booking.title}</h2>
+        <Card>
+          <Form layout="vertical">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Form.Item label={translations.booking.checkIn}>
+                <DatePicker className="w-full" />
+              </Form.Item>
+              <Form.Item label={translations.booking.checkOut}>
+                <DatePicker className="w-full" />
+              </Form.Item>
             </div>
-          </div>
-        </div>
+            <Button type="primary" onClick={handleCheckAvailability}>
+              {translations.booking.checkAvailability}
+            </Button>
+          </Form>
+        </Card>
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-gray-100">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-8">{translations.contact.title}</h2>
-          <div className="flex items-center justify-center gap-2 text-lg mb-4">
-            <PhoneOutlined />
-            <span>{translations.contact.phone}</span>
-          </div>
-          <div className="flex items-center justify-center gap-2 text-lg mb-4">
-            <MailOutlined />
-            <span>{translations.contact.email}</span>
-          </div>
-          <p className="mt-4 text-gray-600 mb-8">
-            {translations.contact.address}
-          </p>
-          <Button 
-            type="primary" 
-            onClick={() => setIsContactModalVisible(true)}
-          >
-            Envíanos un mensaje
-          </Button>
+      <section>
+        <h2 className="text-2xl font-bold mb-8 text-center">{translations.contact.title}</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Form layout="vertical" className="mx-auto w-full max-w-lg">
+            <Form.Item label={translations.contact.name}>
+              <Input />
+            </Form.Item>
+            <Form.Item label={translations.contact.email}>
+              <Input type="email" />
+            </Form.Item>
+            <Form.Item label={translations.contact.message}>
+              <Input.TextArea rows={4} />
+            </Form.Item>
+            <Button type="primary">{translations.booking.sendMessage}</Button>
+          </Form>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p>{translations.footer.copyright}</p>
-          <p className="mt-2">{translations.footer.address}</p>
-          <p className="mt-2">{translations.footer.contact}</p>
-        </div>
-      </footer>
-
-      {/* Availability Check Modal */}
-      <Modal
-        open={isCheckingAvailability}
-        onCancel={() => setIsCheckingAvailability(false)}
-        footer={null}
-        centered
-      >
-        <div className="text-center py-4">
-          <h3 className="text-xl mb-4">
-            {isAvailable === null ? (
-              "Verificando disponibilidad..."
-            ) : isAvailable ? (
-              translations.booking.available
-            ) : (
-              translations.booking.notAvailable
-            )}
-          </h3>
-          {isAvailable !== null && (
-            <Button onClick={() => setIsCheckingAvailability(false)}>
-              {translations.booking.close}
-            </Button>
-          )}
-        </div>
-      </Modal>
-
-      {/* Contact Form Modal */}
-      <Modal
-        title="Envíanos un mensaje"
-        open={isContactModalVisible}
-        onCancel={() => setIsContactModalVisible(false)}
-        footer={null}
-        centered
-      >
-        <Form
-          form={form}
-          layout="vertical"
-          onFinish={handleContactSubmit}
-        >
-          <Form.Item
-            name="name"
-            label="Nombre"
-            rules={[{ required: true, message: 'Por favor ingresa tu nombre' }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="email"
-            label="Email"
-            rules={[
-              { required: true, message: 'Por favor ingresa tu email' },
-              { type: 'email', message: 'Por favor ingresa un email válido' }
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="message"
-            label="Mensaje"
-            rules={[{ required: true, message: 'Por favor ingresa tu mensaje' }]}
-          >
-            <Input.TextArea rows={4} />
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit" block>
-              Enviar
-            </Button>
-          </Form.Item>
-        </Form>
-      </Modal>
     </div>
   );
 }

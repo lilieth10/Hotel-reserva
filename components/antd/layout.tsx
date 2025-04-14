@@ -2,38 +2,51 @@
 
 import React from 'react';
 import { Layout, Menu } from 'antd';
+import { HomeOutlined, BankOutlined, CustomerServiceOutlined, PhoneOutlined, InfoCircleOutlined } from '@ant-design/icons';
+import Link from 'next/link';
 import { useLanguage } from '@/lib/language-context';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer } = Layout;
 
-const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { translations } = useLanguage();
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible>
-        <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-          <Menu.Item key="1">
-            {translations.menu.home}
-          </Menu.Item>
-          <Menu.Item key="2">
-            {translations.menu.users}
-          </Menu.Item>
-          <Menu.Item key="3">
-            {translations.menu.settings}
-          </Menu.Item>
-        </Menu>
-      </Sider>
-      <Layout>
-        <Header style={{ padding: 0, background: '#fff' }} />
-        <Content style={{ margin: '16px' }}>
-          {children}
+    <Layout>
+      <Header className="bg-white shadow-md">
+        <div className="container mx-auto flex justify-between items-center h-full">
+          <Link href="/" className="text-xl font-bold text-primary">
+            Hotel Boutique Mendoza
+          </Link>
+          <Menu mode="horizontal" className="border-0 flex-1 justify-end">
+            <Menu.Item key="1" icon={<HomeOutlined />}>
+              <Link href="/">{translations.menu.home}</Link>
+            </Menu.Item>
+            <Menu.Item key="2" icon={<BankOutlined />}>
+              <Link href="/rooms">{translations.menu.rooms}</Link>
+            </Menu.Item>
+            <Menu.Item key="3" icon={<CustomerServiceOutlined />}>
+              <Link href="/services">{translations.menu.services}</Link>
+            </Menu.Item>
+            <Menu.Item key="4" icon={<PhoneOutlined />}>
+              <Link href="/contact">{translations.menu.contact}</Link>
+            </Menu.Item>
+            <Menu.Item key="5" icon={<InfoCircleOutlined />}>
+              <Link href="/about">{translations.menu.about}</Link>
+            </Menu.Item>
+          </Menu>
+        </div>
+        </Header>
+      <Content>
+        <div className="container mx-auto px-4 py-8">
+            {children}
+          </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          ©2024 Created with ❤️
-        </Footer>
-      </Layout>
+      <Footer className="text-center bg-gray-100">
+        <p>{translations.footer.copyright}</p>
+        <p>{translations.footer.address}</p>
+        <p>{translations.footer.contact}</p>
+      </Footer>
     </Layout>
   );
 };

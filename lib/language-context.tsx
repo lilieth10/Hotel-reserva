@@ -28,17 +28,23 @@ interface FeatureTranslations {
 
 interface BookingTranslations {
   title: string;
+  checkIn: string;
+  checkOut: string;
   checkAvailability: string;
   available: string;
   notAvailable: string;
   close: string;
+  sendMessage: string;
 }
 
 interface ContactTranslations {
   title: string;
+  name: string;
+  email: string;
+  message: string;
   address: string;
   phone: string;
-  email: string;
+  emailLabel: string;
   success: string;
   error: string;
 }
@@ -55,8 +61,6 @@ interface MenuTranslations {
   services: string;
   contact: string;
   about: string;
-  users: string;
-  settings: string;
 }
 
 interface Translations {
@@ -99,16 +103,22 @@ const translations: Record<Language, Translations> = {
     },
     booking: {
       title: 'Reserva tu Estancia',
+      checkIn: 'Entrada',
+      checkOut: 'Salida',
       checkAvailability: 'Verificar Disponibilidad',
       available: '¡Disponible!',
       notAvailable: 'No disponible en estas fechas',
-      close: 'Cerrar'
+      close: 'Cerrar',
+      sendMessage: 'Enviar mensaje'
     },
     contact: {
       title: 'Contáctanos',
+      name: 'Nombre',
+      email: 'Correo electrónico',
+      message: 'Mensaje',
       address: 'Av. San Martín 1234, Mendoza, Argentina',
       phone: '+54 261 123-4567',
-      email: 'reservas@hotelboutiquemendoza.com',
+      emailLabel: 'reservas@hotelboutiquemendoza.com',
       success: 'Mensaje enviado con éxito',
       error: 'Error al enviar el mensaje'
     },
@@ -122,9 +132,7 @@ const translations: Record<Language, Translations> = {
       rooms: 'Habitaciones',
       services: 'Servicios',
       contact: 'Contacto',
-      about: 'Nosotros',
-      users: 'Usuarios',
-      settings: 'Configuración'
+      about: 'Nosotros'
     }
   },
   en: {
@@ -150,16 +158,22 @@ const translations: Record<Language, Translations> = {
     },
     booking: {
       title: 'Book Your Stay',
+      checkIn: 'Check-in',
+      checkOut: 'Check-out',
       checkAvailability: 'Check Availability',
       available: 'Available!',
       notAvailable: 'Not available for these dates',
-      close: 'Close'
+      close: 'Close',
+      sendMessage: 'Send message'
     },
     contact: {
       title: 'Contact Us',
+      name: 'Name',
+      email: 'Email',
+      message: 'Message',
       address: '1234 San Martín Ave, Mendoza, Argentina',
       phone: '+54 261 123-4567',
-      email: 'reservations@mendozaboutiquehotel.com',
+      emailLabel: 'reservations@mendozaboutiquehotel.com',
       success: 'Message sent successfully',
       error: 'Error sending message'
     },
@@ -173,9 +187,7 @@ const translations: Record<Language, Translations> = {
       rooms: 'Rooms',
       services: 'Services',
       contact: 'Contact',
-      about: 'About Us',
-      users: 'Users',
-      settings: 'Settings'
+      about: 'About Us'
     }
   }
 };
