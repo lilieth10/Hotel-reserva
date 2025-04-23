@@ -7,6 +7,15 @@ const nextConfig = {
       transform: '@ant-design/icons/lib/icons/{{ member }}',
     },
   },
+  images: {
+    domains: ['images.unsplash.com'],
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;

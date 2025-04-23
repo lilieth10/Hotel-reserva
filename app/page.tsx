@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Button, Typography, Row, Col, Card, DatePicker, Modal, Statistic, Form, Input, message } from 'antd';
-import { GlobalOutlined, WifiOutlined, EnvironmentOutlined, StarOutlined, PhoneOutlined, UserOutlined, ShoppingCartOutlined, DollarOutlined, MailOutlined } from "@ant-design/icons";
+import { WifiOutlined, EnvironmentOutlined, StarOutlined, PhoneOutlined, UserOutlined, ShoppingCartOutlined, DollarOutlined, MailOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { useLanguage } from "@/lib/language-context";
 import dayjs from "dayjs";
@@ -10,7 +10,7 @@ import dayjs from "dayjs";
 const { Title, Paragraph } = Typography;
 
 export default function Home() {
-  const { translations, toggleLanguage, language } = useLanguage();
+  const { translations } = useLanguage();
   const [date, setDate] = useState<dayjs.Dayjs | null>(dayjs());
   const [isCheckingAvailability, setIsCheckingAvailability] = useState(false);
   const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
@@ -35,17 +35,6 @@ export default function Home() {
 
   return (
     <div className="space-y-12">
-      {/* Language Toggle */}
-      <div className="absolute top-4 right-4 z-10">
-        <Button 
-          icon={<GlobalOutlined />}
-          onClick={toggleLanguage}
-          className="bg-white/80 hover:bg-white"
-        >
-          {language.toUpperCase()}
-        </Button>
-      </div>
-
       {/* Hero Section */}
       <section 
         className="relative h-[600px] bg-cover bg-center flex items-center justify-center"
