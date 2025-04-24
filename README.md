@@ -1,6 +1,6 @@
 # Hotel Boutique Mendoza
 
-Sitio web para el Hotel Boutique Mendoza, desarrollado con Next.js, TypeScript y Ant Design.
+Sitio web para reservas de hotel, desarrollado con Next.js, TypeScript y Ant Design.
 
 ## 🌟 Características
 
